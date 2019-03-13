@@ -3,8 +3,8 @@ class TweetsController < ApplicationController
   post '/tweets' do
     if logged_in?
         @tweet = current_user.tweets.create(content: params[:content])
-    else 
-      redirect to '/login' 
+    else
+      redirect to '/login'
     end
   end
 
