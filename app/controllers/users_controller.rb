@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  get '/users/:slug' do
+   @user = User.find_by_slug(params[:slug])
+   erb :'users/show'
+  end
+
   post '/signup' do
     # binding.pry
     if params[:username] == '' || params[:email] == '' || params[:password] == ''
@@ -42,12 +47,14 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-  
+
     if !!logged_in?
       session.destroy
       redirect'/login'
     else
       redirect'/'
     end
+
   end
+
 end
